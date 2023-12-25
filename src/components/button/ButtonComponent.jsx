@@ -1,16 +1,19 @@
 import React from 'react'
 import './buttonStyle.scss'
-const buttoon_type_classed = {
+const BUTTON_TYPE_CLASSES = {
     google: 'google-sign-in',
     inverted: 'inverted'
 }
 
-function ButtonComponent({children, buttonType, ...otherprops}) {
+function ButtonComponent({children, buttonType, ...otherProps}) {
   return (
-    <button className={`button-container ${buttoon_type_classed[buttonType]}`} {...otherprops}>
-        {children}
+    <button
+      className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`}
+      {...otherProps}
+    >
+      {children}
     </button>
-  )
+  );
 }
 
 export default ButtonComponent
