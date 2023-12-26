@@ -2,7 +2,7 @@ import { useState, useContext } from 'react'
 import { signInAuthUserWithEmailAndPassword, signInWithGooglePopup } from '../../utils/firebase/firebase.utils';
 import FormInput from '../formInput/FormInputComponent';
 import './signInFormStyles.scss'
-import ButtonComponent from '../button/ButtonComponent';
+import ButtonComponent, { BUTTON_TYPE_CLASSES } from '../button/ButtonComponent';
 
 
 const defaultFormFields = {
@@ -19,13 +19,13 @@ function SignInFormComponent() {
     }
 
     const signInWithGoogle = async () => {
-        const {user} = await signInWithGooglePopup()
+        const { user } = await signInWithGooglePopup()
     };
 
     const handleSumbit = async (event) => {
         event.preventDefault();
         try {
-            const {user} = await signInAuthUserWithEmailAndPassword(email, password)
+            const { user } = await signInAuthUserWithEmailAndPassword(email, password)
             resetFormFields()
         } catch (err) {
             switch (err.code) {
@@ -53,7 +53,7 @@ function SignInFormComponent() {
                 <FormInput label='password' type='password' required onChange={handleChange} name='password' value={password} />
                 <div className="buttons-container">
                     <ButtonComponent type="submit">sign in</ButtonComponent>
-                    <ButtonComponent buttonType='google' type='button' onClick={signInWithGoogle}> google sign in</ButtonComponent>
+                    <ButtonComponent buttonType={BUTTON_TYPE_CLASSES.google} type='button' onClick={signInWithGoogle}> google sign in</ButtonComponent>
                 </div>
             </form>
         </div>
